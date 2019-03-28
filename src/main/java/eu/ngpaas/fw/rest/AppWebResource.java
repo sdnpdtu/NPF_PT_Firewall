@@ -15,20 +15,24 @@
  */
 package eu.ngpaas.fw.rest;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import eu.ngpaas.fw.core.FirewallManager;
-import eu.ngpaas.pmLib.*;
-import org.onosproject.rest.AbstractWebResource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import eu.ngpaas.fw.core.FirewallManager;
+import eu.ngpaas.pmlib.ForwardingObjectiveList;
+import eu.ngpaas.pmlib.PolicyHelper;
+import eu.ngpaas.pmlib.PolicyRule;
+import eu.ngpaas.pmlib.PolicyService;
+import eu.ngpaas.pmlib.SimpleResponse;
+import org.onosproject.rest.AbstractWebResource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Sample web resource.
@@ -48,8 +52,8 @@ public class AppWebResource extends AbstractWebResource {
         PolicyRule policyRule = PolicyHelper.parsePolicyRule(body);
         SimpleResponse sr = firewallService.formalValidation(policyRule);
         return ok(sr.getMessage()).
-                status(sr.getCode()).
-                build();
+                                      status(sr.getCode()).
+                                      build();
     }
 
     @POST
@@ -60,8 +64,8 @@ public class AppWebResource extends AbstractWebResource {
         PolicyRule policyRule = PolicyHelper.parsePolicyRule(body);
         SimpleResponse sr = firewallService.contextValidation(policyRule);
         return ok(sr.getMessage()).
-                status(sr.getCode()).
-                build();
+                                      status(sr.getCode()).
+                                      build();
     }
 
     @POST
@@ -72,8 +76,8 @@ public class AppWebResource extends AbstractWebResource {
         ForwardingObjectiveList forwardingObjectiveList = firewallService.getFlowRules(policyRule);
         try {
             return ok(mapper.writeValueAsString(forwardingObjectiveList))
-                    .status(Response.Status.OK)
-                    .build();
+                .status(Response.Status.OK)
+                .build();
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
