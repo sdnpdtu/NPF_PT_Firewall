@@ -25,7 +25,9 @@ import eu.ngpaas.pmlib.PolicyService;
 import eu.ngpaas.pmlib.PolicyVariableType;
 import eu.ngpaas.pmlib.SimpleResponse;
 import org.apache.felix.scr.annotations.Activate;
+import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Deactivate;
+import org.apache.felix.scr.annotations.Service;
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 import org.onlab.osgi.DefaultServiceDirectory;
@@ -52,6 +54,8 @@ import org.onosproject.net.host.HostService;
 import org.slf4j.Logger;
 
 
+@Component(immediate = true)
+@Service
 public class FirewallManager implements PolicyService {
     private static final int FLOW_PRIORITY = 100;
     private final Logger log = getLogger(getClass());

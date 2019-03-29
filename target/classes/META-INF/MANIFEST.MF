@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1553773902449
+Bnd-LastModified: 1553845731722
 Build-Jdk: 1.8.0_171
 Built-By: angelos
 Bundle-ClassPath: WEB-INF/classes
@@ -27,6 +27,7 @@ Import-Package: com.fasterxml.jackson.core;version="[2.9,3)",com.fasterx
  ,org.slf4j;version="[1.7,2)",org.glassfish.jersey.servlet;version="[2.2
  5,3)"
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
-Service-Component: OSGI-INF/eu.ngpaas.fw.ApiDocRegistrator.xml
+Service-Component: OSGI-INF/eu.ngpaas.fw.ApiDocRegistrator.xml,OSGI-INF/
+ eu.ngpaas.fw.core.FirewallManager.xml
 Tool: Bnd-3.0.0.201509101326
 Web-ContextPath: /onos/firewallpolicy
